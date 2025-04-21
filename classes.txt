@@ -1,0 +1,40 @@
+.first-section
+.six-fiftynine
+.five-seventeen
+.color-primary
+.four-fifteen
+.color-tetra
+.button-div
+.six-fifteen
+.color-hexa
+.gradient-background-btn
+.six-fifteen
+.color-penta
+.border-color-btn
+
+
+
+first section: (nextjs code)
+
+<section className="d-flex mb-5 justify-center items-center">
+      <div className="first-section container-fluid">
+        <div className="container p-0">
+          <h1 className="six-fiftynine">Save More, Spend Less!</h1>
+          <p className="five-seventeen color-primary mb-2">
+            Daily Deals & Verified Coupons!
+          </p>
+          <p className="four-fifteen color-tetra mb-4">
+            Find the best discount codes, exclusive offers, and money-saving
+            tips – all in one place!
+          </p>
+          <div className="button-div d-flex gap-3">
+            <button className="six-fifteen color-hexa border-0 py-2 px-4 gradient-background-btn rounded-5">
+              Browse Deals
+            </button>
+            <button className="six-fifteen bg-transparent border-1 py-2 px-4 color-penta border-color-btn rounded-5">
+              Subscribe & Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
