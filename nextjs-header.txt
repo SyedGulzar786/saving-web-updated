@@ -1,0 +1,168 @@
+
+      <header className='bg-color'>
+        <nav className="navbar navbar-expand-lg">
+          <div className="container">
+            <div className="logo">
+              <Link href="/">
+                <Image src="/assets/images/logo.png" alt="Saving-Says" width={400} height={300} />
+                {/*<img src={vendorData?.logo} alt={vendorData?.name} style={{maxWidth: '130px'}}/>*/}
+                {/*<img src="https://savingsays.com/wp-content/uploads/2021/06/Header-4.png" alt="" />*/}
+              </Link>
+            </div>
+            <button
+              className="navbar-toggler"
+              type="button"
+              onClick={toggleMobileMenu}
+              aria-controls="navbarNav"
+              aria-expanded={isMobileMenuOpen ? 'true' : 'false'}
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className={`navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarNav">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link" href="/blog/categories/buying-guide">Buying Guide</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link four-fifteen color-secondary" href="/blog/categories/saving-guide">Saving Guide</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link four-fifteen color-secondary" href="#">Best Time to Buy</Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link four-fifteen color-secondary" href="#">Special Discount</Link>
+                </li>
+                {/* <li className="nav-item dropdown">
+                                <div className='img-icon'>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/726/726461.png" alt=""/>
+                                </div>
+                                <Link
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Holidays
+                                </Link>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" href="#">Action</Link></li>
+                                    <li><Link className="dropdown-item" href="#">Another action</Link></li>
+                                    <li>
+                                        <hr className="dropdown-divider"/>
+                                    </li>
+                                    <li><Link className="dropdown-item" href="#">Something else here</Link></li>
+                                </ul>
+                            </li> */}
+              </ul>
+
+              <div className="search-bar">
+                <SearchBox />
+              </div>
+
+              {isUserLoggedIn ?
+                <Button type="button" variant="link" className="btn login-btn" onClick={handleLogout}>
+                  <FaUser /> Logout
+                </Button> :
+                <Button type="button" variant="link" className="btn login-btn" onClick={handleLoginModal}>
+                  <FaUser /> Login
+                </Button>
+              }
+            </div>
+          </div>
+        </nav>
+
+        <Modal show={isAuthModalShow} centered dialogClassName="modal-35w"
+          onHide={handleCloseModal}
+          aria-labelledby="example-modal-sizes-title-sm">
+          <Modal.Header closeButton>
+            <Modal.Title id="example-modal-sizes-title-sm">{modalTitle}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <BlockUi tag="span" className="d-block my-4" blocking={loading}>
+              {modalTitle === "Log In" &&
+                <Form style={{ paddingTop: "20px" }} onSubmit={handleLoginSubmit} name="Login">
+                  <Form.Group style={{ fontSize: "13px" }} className="mb-3">
+                    <Form.Label htmlFor="email_login">Email address</Form.Label>
+                    <Form.Control
+                      id="email_login"
+                      autoComplete="off"
+                      type="email"
+                      placeholder="name@example.com"
+                      autoFocus
+                      onChange={(e) => setEmail(e.currentTarget.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group style={{ fontSize: "13px" }} className="mb-3">
+                    <Form.Label htmlFor="password_login">Password</Form.Label>
+                    <Form.Control id="password_login" type="password" placeholder="Password"
+                      onChange={(e) => setPassword(e.currentTarget.value)}
+                    />
+                  </Form.Group>
+                  {/*<Form.Group className="mb-3" controlId="formBasicCheckbox" style={{fontSize: "13px"}}>*/}
+                  {/*    <Form.Check size="sm" type="checkbox"*/}
+                  {/*                label="Remember this password and keep me signed in!"/>*/}
+                  {/*</Form.Group>*/}
+                  <Form.Group className="d-flex justify-content-center">
+                    <Button variant="primary" style={{ marginTop: "20px" }} type="submit"
+                      disabled={loading}>
+                      {loading ? 'Loading in...' : 'Log In'}
+                    </Button>
+                  </Form.Group>
+                </Form>
+              }
+
+              {modalTitle === 'Sign Up' &&
+                <Form style={{ paddingTop: "20px" }} onSubmit={handleSignupSubmit} name="Signup">
+                  <Form.Group style={{ fontSize: "13px" }} className="mb-3">
+                    <Form.Label htmlFor="email_signup">Email address</Form.Label>
+                    <Form.Control
+                      id="email_signup"
+                      type="email"
+                      placeholder="name@example.com"
+                      onChange={(e) => setEmail(e.currentTarget.value)}
+                      autoFocus
+                    />
+                  </Form.Group>
+                  <Form.Group style={{ fontSize: "13px" }} className="mb-3">
+                    <Form.Label htmlFor="password_signup">Password</Form.Label>
+                    <Form.Control id="password_signup" type="password" placeholder="Password"
+                      onChange={(e) => setPassword(e.currentTarget.value)} />
+                  </Form.Group>
+                  <Form.Group style={{ fontSize: "13px" }} className="mb-3">
+                    <Form.Label htmlFor="confirm_password">Confirm Password</Form.Label>
+                    <Form.Control id="confirm_password" type="password" placeholder="Confirm Password"
+                      onChange={(e) => setConfirmPassword(e.currentTarget.value)} />
+                  </Form.Group>
+                  <Form.Group className="d-flex justify-content-center">
+                    <Button variant="primary" style={{ marginTop: "20px" }} type="submit"
+                      disabled={loading}>
+                      {loading ? 'Signing up...' : 'Sign up'}
+                    </Button>
+                  </Form.Group>
+                  <Form.Text className="d-block text-center" style={{ fontSize: "12px" }} muted>
+                    By clicking Sign Up, I agree to {vendorData?.name} <Link href="">Terms of
+                      Use</Link> and <Link href="">Privacy Policy</Link>.
+                  </Form.Text>
+                </Form>
+              }
+            </BlockUi>
+          </Modal.Body>
+          <Modal.Footer>
+            {modalTitle === 'Sign Up' &&
+              <div>Already have an account? <Button variant="link" size="sm" style={{ fontSize: "13px" }}
+                onClick={handleLoginModal}>Log In</Button>
+              </div>
+            }
+
+            {modalTitle === 'Log In' &&
+              <div>Don't have an account? <Button variant="link" size="sm" style={{ fontSize: "13px" }}
+                onClick={handleRegisterModal}>Sign Up</Button>
+              </div>
+            }
+          </Modal.Footer>
+        </Modal>
+      </header>

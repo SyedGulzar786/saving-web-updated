@@ -1,0 +1,177 @@
+              <header>
+    <nav className="navbar navbar-expand-lg nav-color navbar-light">
+      <div className="container">
+        {/* <!-- Logo --> */}
+        <a className="navbar-brand" href="./index.html">
+          <img src="./assets/landing-page/image_(5)[1] 1.svg" alt="Saving Save Logo" className="web-logo"/>
+        </a>
+  
+        {/* <!-- Toggle Button for Mobile --> */}
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+  
+        {/* <!-- Navbar Links and Right Side --> */}
+        <div className="collapse navbar-collapse" id="navbarContent">
+          <div className="row w-100">
+            {/* <!-- Navigation Links --> */}
+            <div className="col-lg-8">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link four-fifteen color-secondary" href="#">Buying Guide</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link four-fifteen color-secondary" href="#">Saving Guide</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link four-fifteen color-secondary" href="#">Best Time to Buy</a>
+                </li>
+                <li className="nav-item">
+                    {/* above className has a class dropdown */}
+                  <a className="nav-link four-fifteen color-secondary dropdown-toggle" href="#" id="specialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Special Discount
+                  </a>
+                  <ul className="dropdown-menu" aria-labelledby="specialDropdown">
+                    <li><a className="dropdown-item" href="#">Action</a></li>
+                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+  
+            {/* <!-- Search & Language Dropdown --> */}
+            <div className="col-lg-4 ps-0 d-flex align-items-center justify-content-lg-end mt-3 mt-lg-0">
+              {/* <!-- Search --> */}
+              <div className="input-group rounded-5">
+                <span className="input-group-text bg-white rounded-5 py-0 search-container px-2">
+                  <img src="./assets/landing-page/Vector.svg" alt="Search Icon"/>
+                  <input type="text" className="form-control four-thirteen border-0 color-tertiary" placeholder="Search for coupons and store" aria-label="Search"/>
+                </span>
+              </div>
+  
+              {/* <!-- Language Dropdown --> */}
+              <div className="ms-3">
+                    {/* above className has a class dropdown */}
+                {/* <button className="btn btn-light six-fifteen bg-transparent dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span className="flag-icon flag-icon-gb"></span> EN
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="languageDropdown">
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-gb"></span> English <i className="fa fa-check text-success ms-2"></i></a></li>
+                  <li><hr className="dropdown-divider"/></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-pl"></span> Polski</a></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-cn"></span> 中文</a></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-jp"></span> 日本語</a></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-de"></span> Deutsch</a></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-fr"></span> Français</a></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-es"></span> Español</a></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-ru"></span> Русский</a></li>
+                  <li><a className="dropdown-item" href="#"><span className="flag-icon flag-icon-pt"></span> Português</a></li>
+                </ul> */}
+
+              {isUserLoggedIn ?
+                            <Button type="button" variant="link" className="btn login-tn" onClick={handleLogout}>
+                                <FaUser/> Logout
+                            </Button> :
+                            <Button type="button" variant="link" className="btn login-btn" onClick={handleLoginModal}>
+                                <FaUser/> Login
+                            </Button>
+                        }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <Modal show={isAuthModalShow} centered dialogClassName="modal-35w"
+                   onHide={handleCloseModal}
+                   aria-labelledby="example-modal-sizes-title-sm">
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-modal-sizes-title-sm">{modalTitle}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <BlockUi tag="span" className="d-block my-4" blocking={loading}>
+                        {modalTitle === "Log In" &&
+                            <Form style={{paddingTop: "20px"}} onSubmit={handleLoginSubmit} name="Login">
+                                <Form.Group style={{fontSize: "13px"}} className="mb-3">
+                                    <Form.Label htmlFor="email_login">Email address</Form.Label>
+                                    <Form.Control
+                                        id="email_login"
+                                        autoComplete="off"
+                                        type="email"
+                                        placeholder="name@example.com"
+                                        autoFocus
+                                        onChange={(e) => setEmail(e.currentTarget.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group style={{fontSize: "13px"}} className="mb-3">
+                                    <Form.Label htmlFor="password_login">Password</Form.Label>
+                                    <Form.Control id="password_login" type="password" placeholder="Password"
+                                                  onChange={(e) => setPassword(e.currentTarget.value)}
+                                    />
+                                </Form.Group>
+                                {/*<Form.Group className="mb-3" controlId="formBasicCheckbox" style={{fontSize: "13px"}}>*/}
+                                {/*    <Form.Check size="sm" type="checkbox"*/}
+                                {/*                label="Remember this password and keep me signed in!"/>*/}
+                                {/*</Form.Group>*/}
+                                <Form.Group className="d-flex justify-content-center">
+                                    <Button variant="primary" style={{marginTop: "20px"}} type="submit"
+                                            disabled={loading}>
+                                        {loading ? 'Loading in...' : 'Log In'}
+                                    </Button>
+                                </Form.Group>
+                            </Form>
+                        }
+
+                        {modalTitle === 'Sign Up' &&
+                            <Form style={{paddingTop: "20px"}} onSubmit={handleSignupSubmit} name="Signup">
+                                <Form.Group style={{fontSize: "13px"}} className="mb-3">
+                                    <Form.Label htmlFor="email_signup">Email address</Form.Label>
+                                    <Form.Control
+                                        id="email_signup"
+                                        type="email"
+                                        placeholder="name@example.com"
+                                        onChange={(e) => setEmail(e.currentTarget.value)}
+                                        autoFocus
+                                    />
+                                </Form.Group>
+                                <Form.Group style={{fontSize: "13px"}} className="mb-3">
+                                    <Form.Label htmlFor="password_signup">Password</Form.Label>
+                                    <Form.Control id="password_signup" type="password" placeholder="Password"
+                                                  onChange={(e) => setPassword(e.currentTarget.value)}/>
+                                </Form.Group>
+                                <Form.Group style={{fontSize: "13px"}} className="mb-3">
+                                    <Form.Label htmlFor="confirm_password">Confirm Password</Form.Label>
+                                    <Form.Control id="confirm_password" type="password" placeholder="Confirm Password"
+                                                  onChange={(e) => setConfirmPassword(e.currentTarget.value)}/>
+                                </Form.Group>
+                                <Form.Group className="d-flex justify-content-center">
+                                    <Button variant="primary" style={{marginTop: "20px"}} type="submit"
+                                            disabled={loading}>
+                                        {loading ? 'Signing up...' : 'Sign up'}
+                                    </Button>
+                                </Form.Group>
+                                <Form.Text className="d-block text-center" style={{fontSize: "12px"}} muted>
+                                    By clicking Sign Up, I agree to {vendorData?.name} <Link href="">Terms of
+                                    Use</Link> and <Link href="">Privacy Policy</Link>.
+                                </Form.Text>
+                            </Form>
+                        }
+                    </BlockUi>
+                </Modal.Body>
+                <Modal.Footer>
+                    {modalTitle === 'Sign Up' &&
+                        <div>Already have an account? <Button variant="link" size="sm" style={{fontSize: "13px"}}
+                                                              onClick={handleLoginModal}>Log In</Button>
+                        </div>
+                    }
+
+                    {modalTitle === 'Log In' &&
+                        <div>Don't have an account? <Button variant="link" size="sm" style={{fontSize: "13px"}}
+                                                            onClick={handleRegisterModal}>Sign Up</Button>
+                        </div>
+                    }
+                </Modal.Footer>
+            </Modal>
+  </header>
