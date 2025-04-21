@@ -219,18 +219,18 @@ button.btn.btn-link.d-flex.align-items-center.p-0.custom-design {
 }
 /* first-section */
 /* first-section */
-.first-section {
+.first-sec {
   background: #fbce6f;
 }
 .first-sec-left-bg {
-  background-image: url(/assets/responsive-layout/Group\ 20002.svg);
+  background-image: url(/assets/images/responsive-layout/bg-sticks.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   padding: 100px 0px;
 }
 .first-sec-right-bg {
-  background-image: url(/assets/responsive-layout/Artboard\ 1\ 1.svg);
+  background-image: url(/assets/images/responsive-layout/Artboard.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
